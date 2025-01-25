@@ -13,10 +13,9 @@ namespace ToDo.DataAccess
 		public DbSet<AccountEntity> Accounts { get; set; }
 		public DbSet<TaskEntity> Tasks { get; set; }
 		public DbSet<RoleEntity> Roles { get; set; }
-		public DbSet<LogEntry> LogEntries { get; set; }
+	
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
-		{
-			modelBuilder.Entity<LogEntry>().ToTable("LogEntries");
+		{	
 			base.OnModelCreating(modelBuilder);
 
 		}

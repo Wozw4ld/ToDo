@@ -9,8 +9,9 @@ namespace ToDo.DataAccess.Repositories.Interfaces
 	public interface IUnitOfWork : IDisposable
 	{
 		IAccountRepository AccountRepository { get; }
-	//	ITaskRepository TaskRepository { get; }
-	//  IRoleRepository RoleRepository { get; }
+		IRoleRepository RoleRepository { get; }
+		ITaskRepository TaskRepository { get; }
+		//  IRoleRepository RoleRepository { get; }
 
 		Task<int> SaveChangeAsync();
 	}

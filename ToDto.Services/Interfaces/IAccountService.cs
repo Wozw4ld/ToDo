@@ -11,6 +11,7 @@ namespace ToDto.Services.Interfaces
 	{
 		public Task<bool> IsUserNameExist(string userName);
 		public Task<string> RegisterAsync(AccountCreateDto account);
-		public Task<string> LoginAsync(AccountCreateDto account);
+		public Task<string> LoginAsync(AccountLoginDto account);
+		public Task<bool> JustForCheck();
 	}
 }

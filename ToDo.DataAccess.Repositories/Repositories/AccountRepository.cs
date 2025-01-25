@@ -27,7 +27,7 @@ namespace ToDo.DataAccess.Repositories.Repositories
 			throw new NotImplementedException();
 		}
 
-		public async Task<AccountEntity> IsUserNameExist(string userName)
+		public async Task<AccountEntity> GetByName(string userName)
 		{
 			return await _dbContext.Accounts.FirstOrDefaultAsync(a => a.UserName == userName);
 
@@ -41,5 +41,29 @@ namespace ToDo.DataAccess.Repositories.Repositories
 		{
 			throw new NotImplementedException();
 		}
+		public async Task<LoginResponseDto?> GetUserWithRoleAsync(string userName)
+		{
+			return await (from user in _dbContext.Accounts
+						  join role in _dbContext.Roles
+						  on user.Id equals role.AccountId
+						  where user.UserName == userName
+						  select new
+						  {
+							  user.Id,
+							  user.UserName,
+							  user.PasswordHash,
+							  role.Role
+						  })
+							  .AsNoTracking()
+					.Select(x => new LoginResponseDto
+					{
+						Id = x.Id,
+						PasswordHash = x.PasswordHash,
+						UserName = x.UserName,
+						Role = x.Role
+					})
+					.FirstOrDefaultAsync();
+		}
+
 	}
 }

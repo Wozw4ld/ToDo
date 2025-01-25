@@ -10,8 +10,12 @@ namespace ToDo.DataAccess.Repositories.Interfaces
 {
 	public interface IAccountRepository : IRepository<AccountEntity>
 	{
-		Task<AccountEntity> IsUserNameExist(string userName);
+	
+		Task<AccountEntity> GetByName(string userName);
 		Task<IQueryable<AccountSummaryDto>> GetAllUsers();
-		
+
+		Task<LoginResponseDto?> GetUserWithRoleAsync(string userName);
+
+
 	}
 }

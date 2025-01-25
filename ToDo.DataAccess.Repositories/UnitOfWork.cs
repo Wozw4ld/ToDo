@@ -12,11 +12,15 @@ namespace ToDo.DataAccess.Repositories
 	public class UnitOfWork : IUnitOfWork
 	{
 		private readonly ToDoDbContext _dbContext;
-		public IAccountRepository AccountRepository { get; } 
+		public IAccountRepository AccountRepository { get; }
+		public IRoleRepository RoleRepository { get; }
+		public ITaskRepository TaskRepository { get; }
 		public UnitOfWork(ToDoDbContext dbContext)
 		{
 			_dbContext = dbContext;
+			RoleRepository = new RoleRepository(dbContext);
 			AccountRepository = new AccountRepository(dbContext);
+			TaskRepository = new TaskRepository(dbContext);
 		}
 
 		public void Dispose()

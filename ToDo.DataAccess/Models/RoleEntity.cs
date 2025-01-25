@@ -9,7 +9,7 @@ namespace ToDo.DataAccess.Models
 	public class RoleEntity
 	{
 		public Guid Id { get; set; }
-		public Guid AccountId { get; set; }
-		public string Role { get; set; } = string.Empty;
+		public Guid AccountId { get; set; } 
+		public int Role { get; set; }  = 1 ;
 	}
 }
